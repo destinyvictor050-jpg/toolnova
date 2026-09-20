@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNova - Free Online Tools</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#111827;
+    transition:0.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:white;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:18px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.header-content{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+#themeBtn{
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.hero{
+    text-align:center;
+    padding:35px 10px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#6b7280;
+}
+
+body.dark .hero p{
+    color:#d1d5db;
+}
+
+.search{
+    width:100%;
+    max-width:600px;
+    display:block;
+    margin:20px auto;
+    padding:14px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:16px;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+body.dark .card{
+    background:#1f2937;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:12px;
+    margin:7px 0;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+button{
+    border:none;
+    padding:11px 15px;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.result{
+    margin-top:10px;
+    padding:10px;
+    background:#eef2ff;
+    border-radius:8px;
+}
+
+body.dark .result{
+    background:#374151;
+}
+
+.ad{
+    margin:25px 0;
+    padding:25px;
+    text-align:center;
+    border:2px dashed #cbd5e1;
+    border-radius:12px;
+    color:#64748b;
+}
+
+body.dark .ad{
+    border-color:#4b5563;
+    color:#9ca3af;
+}
+
+/* SUPPORT SECTION */
+.support{
+    margin:35px 0;
+    padding:35px 20px;
+    text-align:center;
+    background:linear-gradient(135deg,#1e3a8a,#7c3aed);
+    color:white;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+.support h2{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.support p{
+    line-height:1.6;
+    max-width:650px;
+    margin:8px auto;
+}
+
+.support-main-button{
+    background:#facc15;
+    color:#111827;
+    font-weight:bold;
+    font-size:16px;
+    padding:13px 20px;
+}
+
+.support-details{
+    display:none;
+    background:white;
+    color:#111827;
+    margin:20px auto 0;
+    padding:22px;
+    border-radius:14px;
+    max-width:420px;
+    text-align:left;
+}
+
+.support-details h3{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.copy-button{
+    width:100%;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+}
+
+.calendar-grid div{
+    padding:10px 3px;
+    text-align:center;
+    border-radius:6px;
+}
+
+.day-name{
+    font-weight:bold;
+    background:#e5e7eb;
+}
+
+body.dark .day-name{
+    background:#374151;
+}
+
+.today{
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    margin-top:30px;
+    background:#111827;
+    color:white;
+}
+
+footer a{
+    color:#93c5fd;
+    text-decoration:none;
+    margin:0 8px;
+}
+
+@media(max-width:600px){
+
+    .header-content{
+        flex-direction:column;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .tools{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-content">
+
+<div class="logo">🛠️ ToolNova</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<button id="themeBtn" onclick="toggleTheme()">🌙</button>
+
+</div>
+</header>
+
+
+<div class="container">
+
+<section class="hero">
+
+<h1>ToolNova</h1>
+
+<p>Free, simple and useful online tools.</p>
+
+<input
+type="text"
+class="search"
+id="search"
+placeholder="🔍 Search tools..."
+oninput="searchTools()"
+>
+
+</section>
+
+
+<div class="ad">
+📢 Advertisement
+</div>
+
+
+<section class="tools" id="tools">
+
+
+<!-- CALCULATOR -->
+<div class="card tool">
+
+<h2>🧮 Calculator</h2>
+
+<input
+type="text"
+id="calcDisplay"
+placeholder="Example: 10 + 5 * 2"
+>
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="calcResult">
+Result will appear here.
+</div>
+
+</div>
+
+
+<!-- UNIT CONVERTER -->
+<div class="card tool">
+
+<h2>📏 Unit Converter</h2>
+
+<input
+type="number"
+id="unitValue"
+placeholder="Enter value"
+>
+
+<select id="unitType">
+
+<option value="km-mi">Kilometers → Miles</option>
+<option value="mi-km">Miles → Kilometers</option>
+<option value="kg-lb">Kilograms → Pounds</option>
+<option value="lb-kg">Pounds → Kilograms</option>
+<option value="c-f">Celsius → Fahrenheit</option>
+<option value="f-c">Fahrenheit → Celsius</option>
+
+</select>
+
+<button onclick="convertUnit()">Convert</button>
+
+<div class="result" id="unitResult">
+Result will appear here.
+</div>
+
+</div>
+
+
+<!-- WORD COUNTER -->
+<div class="card tool">
+
+<h2>📝 Word Counter</h2>
+
+<textarea
+id="wordText"
+placeholder="Type or paste your text here..."
+oninput="countWords()"
+></textarea>
+
+<div class="result" id="wordResult">
+Words: 0 | Characters: 0
+</div>
+
+</div>
+
+
+<!-- CURRENCY -->
+<div class="card tool">
+
+<h2>💰 Currency Converter</h2>
+
+<input
+type="number"
+id="currencyAmount"
+placeholder="Amount"
+>
+
+<select id="currencyType">
+
+<option value="usd-ngn">USD → NGN</option>
+<option value="ngn-usd">NGN → USD</option>
+<option value="gbp-ngn">GBP → NGN</option>
+<option value="ngn-gbp">NGN → GBP</option>
+
+</select>
+
+<button onclick="convertCurrency()">Convert</button>
+
+<div class="result" id="currencyResult">
+Result will appear here.
+</div>
+
+</div>
+
+
+<!-- NOTEPAD -->
+<div class="card tool">
+
+<h2>📒 Notepad</h2>
+
+<textarea
+id="notes"
+placeholder="Write your notes here..."
+></textarea>
+
+<button onclick="saveNotes()">💾 Save Notes</button>
+
+<button onclick="clearNotes()">🗑️ Clear</button>
+
+<div class="result" id="noteResult">
+Your notes are saved on this device.
+</div>
+
+</div>
+
+
+<!-- CALENDAR -->
+<div class="card tool">
+
+<h2>📅 Calendar</h2>
+
+<div class="calendar-header">
+
+<button onclick="previousMonth()">◀</button>
+
+<strong id="monthTitle"></strong>
+
+<button onclick="nextMonth()">▶</button>
+
+</div>
+
+<div class="calendar-grid" id="calendar"></div>
+
+</div>
+
+</section>
+
+
+<!-- SUPPORT DEVELOPER -->
+<section class="support">
+
+<h2>❤️ Support the Developer</h2>
+
+<p>
+Enjoying ToolNova?
+Your support helps keep ToolNova running
+and allows new tools and features to be added.
+</p>
+
+<button
+class="support-main-button"
+onclick="showSupport()"
+>
+❤️ Show Support Details
+</button>
+
+
+<div
+class="support-details"
+id="supportDetails"
+>
+
+<h3>Support ToolNova</h3>
+
+<p>
+<strong>Bank:</strong> Moniepoint
+</p>
+
+<p>
+<strong>Account Name:</strong> Destiny Victor
+</p>
+
+<p>
+<strong>Account Number:</strong>
+<span id="accountNumber">9132955146</span>
+</p>
+
+<button
+class="copy-button"
+onclick="copyAccount()"
+>
+📋 Copy Account Number
+</button>
+
+<p style="text-align:center;font-size:13px;margin-top:15px;">
+Thank you for supporting ToolNova ❤️
+</p>
+
+</div>
+
+</section>
+
+
+<div class="ad">
+📢 Advertisement
+</div>
+
+</div>
+
+
+<footer>
+
+<p>© 2026 ToolNova. All rights reserved.</p>
+
+<br>
+
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="contact.html">Contact</a>
+
+</footer>
+
+
+<script>
+
+/* THEME */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+
+localStorage.setItem("theme","dark");
+
+document.getElementById("themeBtn").textContent="☀️";
+
+}else{
+
+localStorage.setItem("theme","light");
+
+document.getElementById("themeBtn").textContent="🌙";
+
+}
+
+}
+
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark");
+
+document.getElementById("themeBtn").textContent="☀️";
+
+}
+
+
+/* CALCULATOR */
+
+function calculate(){
+
+const value=document.getElementById("calcDisplay").value;
+
+try{
+
+const result=Function('"use strict";return ('+value+')')();
+
+document.getElementById("calcResult").textContent=
+"Result: "+result;
+
+}catch(error){
+
+document.getElementById("calcResult").textContent=
+"Please enter a valid calculation.";
+
+}
+
+}
+
+
+/* UNIT CONVERTER */
+
+function convertUnit(){
+
+const value=parseFloat(
+document.getElementById("unitValue").value
+);
+
+const type=document.getElementById("unitType").value;
+
+if(isNaN(value)){
+
+document.getElementById("unitResult").textContent=
+"Please enter a value.";
+
+return;
+
+}
+
+let result;
+
+if(type==="km-mi") result=value*0.621371;
+
+if(type==="mi-km") result=value*1.60934;
+
+if(type==="kg-lb") result=value*2.20462;
+
+if(type==="lb-kg") result=value*0.453592;
+
+if(type==="c-f") result=(value*9/5)+32;
+
+if(type==="f-c") result=(value-32)*5/9;
+
+document.getElementById("unitResult").textContent=
+"Result: "+result.toFixed(2);
+
+}
+
+
+/* WORD COUNTER */
+
+function countWords(){
+
+const text=document.getElementById("wordText").value.trim();
+
+const words=text
+? text.split(/\s+/).length
+:0;
+
+const characters=
+document.getElementById("wordText").value.length;
+
+document.getElementById("wordResult").textContent=
+"Words: "+words+" | Characters: "+characters;
+
+}
+
+
+/* CURRENCY */
+
+function convertCurrency(){
+
+const amount=parseFloat(
+document.getElementById("currencyAmount").value
+);
+
+const type=document.getElementById("currencyType").value;
+
+if(isNaN(amount)){
+
+document.getElementById("currencyResult").textContent=
+"Please enter an amount.";
+
+return;
+
+}
+
+
+/* Example rates */
+
+let result;
+
+if(type==="usd-ngn") result=amount*1500;
+
+if(type==="ngn-usd") result=amount/1500;
+
+if(type==="gbp-ngn") result=amount*1950;
+
+if(type==="ngn-gbp") result=amount/1950;
+
+document.getElementById("currencyResult").textContent=
+"Result: "+result.toFixed(2);
+
+}
+
+
+/* NOTES */
+
+const notes=document.getElementById("notes");
+
+notes.value=localStorage.getItem("toolnovaNotes") || "";
+
+
+function saveNotes(){
+
+localStorage.setItem(
+"toolnovaNotes",
+document.getElementById("notes").value
+);
+
+document.getElementById("noteResult").textContent=
+"✅ Notes saved successfully.";
+
+}
+
+
+function clearNotes(){
+
+document.getElementById("notes").value="";
+
+localStorage.removeItem("toolnovaNotes");
+
+document.getElementById("noteResult").textContent=
+"Notes cleared.";
+
+}
+
+
+/* CALENDAR */
+
+let currentDate=new Date();
+
+
+function renderCalendar(){
+
+const year=currentDate.getFullYear();
+
+const month=currentDate.getMonth();
+
+const firstDay=
+new Date(year,month,1).getDay();
+
+const daysInMonth=
+new Date(year,month+1,0).getDate();
+
+const monthNames=[
+"January","February","March",
+"April","May","June",
+"July","August","September",
+"October","November","December"
+];
+
+document.getElementById("monthTitle").textContent=
+monthNames[month]+" "+year;
+
+const calendar=
+document.getElementById("calendar");
+
+calendar.innerHTML="";
+
+
+const dayNames=[
+"Sun","Mon","Tue","Wed","Thu","Fri","Sat"
+];
+
+dayNames.forEach(function(day){
+
+const div=document.createElement("div");
+
+div.className="day-name";
+
+div.textContent=day;
+
+calendar.appendChild(div);
+
+});
+
+
+for(let i=0;i<firstDay;i++){
+
+const empty=document.createElement("div");
+
+calendar.appendChild(empty);
+
+}
+
+
+for(let day=1;day<=daysInMonth;day++){
+
+const div=document.createElement("div");
+
+div.textContent=day;
+
+const today=new Date();
+
+if(
+day===today.getDate() &&
+month===today.getMonth() &&
+year===today.getFullYear()
+){
+
+div.className="today";
+
+}
+
+calendar.appendChild(div);
+
+}
+
+}
+
+
+function previousMonth(){
+
+currentDate.setMonth(
+currentDate.getMonth()-1
+);
+
+renderCalendar();
+
+}
+
+
+function nextMonth(){
+
+currentDate.setMonth(
+currentDate.getMonth()+1
+);
+
+renderCalendar();
+
+}
+
+
+renderCalendar();
+
+
+/* SUPPORT */
+
+function showSupport(){
+
+const box=
+document.getElementById("supportDetails");
+
+if(box.style.display==="block"){
+
+box.style.display="none";
+
+}else{
+
+box.style.display="block";
+
+}
+
+}
+
+
+/* COPY ACCOUNT */
+
+function copyAccount(){
+
+const account=
+document.getElementById("accountNumber")
+.textContent
+.trim();
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(account)
+.then(function(){
+
+alert("Account number copied!");
+
+});
+
+}else{
+
+alert("Account number: "+account);
+
+}
+
+}
+
+
+/* SEARCH */
+
+function searchTools(){
+
+const search=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const cards=
+document.querySelectorAll(".tool");
+
+cards.forEach(function(card){
+
+const text=
+card.textContent.toLowerCase();
+
+if(text.includes(search)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
